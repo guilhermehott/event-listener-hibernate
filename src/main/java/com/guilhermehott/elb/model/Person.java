@@ -1,4 +1,4 @@
-package com.guilhermehott.event_listener_hibernate.model;
+package com.guilhermehott.elb.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

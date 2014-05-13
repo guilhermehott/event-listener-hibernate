@@ -1,4 +1,4 @@
-package br.gov.funai.sgd.core.infra;
+package com.guilhermehott.elb;
 
 import javax.persistence.Table;
 
@@ -7,7 +7,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.ejb.event.EJB3PostUpdateEventListener;
 import org.hibernate.event.spi.PostUpdateEvent;
 
-import br.gov.funai.core.bean.entidade.Entidade;
 
 public class PostUpdateEventListener extends EJB3PostUpdateEventListener {
 	private static final long serialVersionUID = 1L;
@@ -17,12 +16,10 @@ public class PostUpdateEventListener extends EJB3PostUpdateEventListener {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onPostUpdate(PostUpdateEvent event) throws HibernateException {
-		if (event.getEntity() instanceof Entidade) {
 //			logger.info("onPostUpdate: entity : " + event.getEntity().getClass());
 			logger.info("onPostUpdate: table: " 
 					+ ((Table) event.getPersister().getMappedClass().getAnnotation(Table.class)).schema()
 					+ "." + ((Table) event.getPersister().getMappedClass().getAnnotation(Table.class)).name());
-		}
 		super.onPostUpdate(event);
 	}
 }

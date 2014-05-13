@@ -1,4 +1,4 @@
-package com.guilhermehott.event_listener_hibernate;
+package com.guilhermehott.elb;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

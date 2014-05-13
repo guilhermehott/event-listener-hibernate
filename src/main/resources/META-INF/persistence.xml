@@ -5,28 +5,33 @@
 	version="2.0">
 	<persistence-unit name="event-listener-hibernate">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>com.guilhermehott.model.event_listener_hibernate.Event</class>
-		<class>com.guilhermehott.model.event_listener_hibernate.Person</class>
+		<class>com.guilhermehott.elb.model.Event</class>
+		<class>com.guilhermehott.elb.model.Person</class>
 		<properties>
-			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
-			<property name="javax.persistence.jdbc.user" value="sa" />
-			<property name="javax.persistence.jdbc.password" value="" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:." />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+<!-- 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" /> -->
+<!-- 			<property name="javax.persistence.jdbc.user" value="sa" /> -->
+<!-- 			<property name="javax.persistence.jdbc.password" value="" /> -->
+<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:." /> -->
+<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /> -->
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.user" value="admin" />
+			<property name="javax.persistence.jdbc.password" value="admin" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/teste" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
-			
-			 <property name="hibernate.ejb.event.post-load" 
-				value="com.guilhermehott.event_listener_hibernate.PostLoadEventListener"/>
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
+
+<!-- 			 <property name="hibernate.hibernate.event.post-load"  -->
+<!-- 				value="com.guilhermehott.elb.LoadEventListener"/> -->
 			<property name="hibernate.ejb.event.post-insert" 
-				value="com.guilhermehott.event_listener_hibernate.PostInsertEventListener"/>
+				value="com.guilhermehott.elb.PostInsertEventListener"/>
 			<property name="hibernate.ejb.event.post-update" 
-				value="com.guilhermehott.event_listener_hibernate.PostUpdateEventListener"/>
+				value="com.guilhermehott.elb.PostUpdateEventListener"/>
 			<property name="hibernate.ejb.event.post-delete" 
-				value="com.guilhermehott.event_listener_hibernate.PostDeleteEventListener"/>
+				value="com.guilhermehott.elb.PostDeleteEventListener"/>
 
 		</properties>
 	</persistence-unit>
