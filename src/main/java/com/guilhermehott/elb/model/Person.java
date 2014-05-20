@@ -2,26 +2,33 @@ package com.guilhermehott.elb.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @Entity
 public class Person {
-	
+
 	@Id
+	@GenericGenerator(name = "GENERATOR", strategy = "sequence", parameters = { @Parameter(name = "sequence", value = "hibernate_sequence") })
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GENERATOR")
 	private Integer id;
-	
+
 	@Column
 	private String firstName;
-	
+
 	@Column
 	private String lastName;
-	
+
 	@Column
 	private Integer age;
 
-	public Person(){
+	public Person() {
 	}
-	
+
 	public Person(Integer id, String firstName, String lastName, Integer age) {
 		super();
 		this.id = id;

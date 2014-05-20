@@ -62,16 +62,16 @@ public class App {
 		Person p2 = (Person) em.get(Person.class, 1);
 		log.info(p2.getFirstName());
 
-		log.info("Remove");
-		em.delete(p2);
-
-		try {
-			log.info("Find");
-			Person p3 = (Person) em.get(Person.class, 1);
-			log.info(p3.getFirstName());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		log.info("Remove");
+//		em.delete(p2);
+//
+//		try {
+//			log.info("Find");
+//			Person p3 = (Person) em.get(Person.class, 1);
+//			log.info(p3.getFirstName());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 		System.out.println();
 		em.close();
@@ -85,31 +85,32 @@ public class App {
 
 		System.out.println();
 		// Work with the EM
-		Person person = new Person(1, "Guilherme", "Hott", 26);
+		Person person = new Person(null, "Guilherme", "Hott", 26);
 
 		// salvar
 		log.info("Save");
 		em.persist(person);
 		log.info(person.getFirstName());
+		em.refresh(person);
 
-		person.setFirstName("Cecilia");
-		log.info("Update");
-		em.persist(person);
+//		person.setFirstName("Cecilia");
+//		log.info("Update");
+//		em.persist(person);
+//
+//		log.info("Find");
+//		Person p2 = em.find(Person.class, 1);
+//		log.info(p2.getFirstName());
 
-		log.info("Find");
-		Person p2 = em.find(Person.class, 1);
-		log.info(p2.getFirstName());
-
-		log.info("Remove");
-		em.remove(p2);
-
-		try {
-			log.info("Find");
-			Person p3 = em.find(Person.class, 1);
-			log.info(p3.getFirstName());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		log.info("Remove");
+//		em.remove(p2);
+//
+//		try {
+//			log.info("Find");
+//			Person p3 = em.find(Person.class, 1);
+//			log.info(p3.getFirstName());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 		System.out.println();
 		em.close();

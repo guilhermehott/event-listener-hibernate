@@ -21,7 +21,7 @@ public class LoadEventListener extends DefaultLoadEventListener {
 		if (ultimoLoadEvent != event) {
 			ultimoLoadEvent = event;
 //			logger.info("onPostLoad: entity : " + event.getEntity().getClass());
-			System.out.println("onPostLoad: table: " 
+			System.out.println("onLoad: table: " 
 					+ event.getEntityClassName());
 		}
 //		logger.info("testeeee");

@@ -21,17 +21,19 @@
 
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
 <!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
 
 <!-- 			 <property name="hibernate.hibernate.event.post-load"  -->
 <!-- 				value="com.guilhermehott.elb.LoadEventListener"/> -->
-			<property name="hibernate.ejb.event.post-insert" 
+			<property name="hibernate.ejb.event.create" 
 				value="com.guilhermehott.elb.PostInsertEventListener"/>
 			<property name="hibernate.ejb.event.post-update" 
 				value="com.guilhermehott.elb.PostUpdateEventListener"/>
 			<property name="hibernate.ejb.event.post-delete" 
 				value="com.guilhermehott.elb.PostDeleteEventListener"/>
+				
+<!-- org.hibernate.event.spi.EventType essa classe contém os nomes das properties dos eventos
+ org.hibernate.internal.SessionImpl método firePersist() -->
 
 		</properties>
 	</persistence-unit>
