@@ -25,7 +25,7 @@ public class App {
 		Logger log = LoggerFactory.getLogger(App.class);
 		log.info("Boostraping");
 
-//		runHibernateConfiguration(log);
+		// runHibernateConfiguration(log);
 		runHibernateProperties(log);
 	}
 
@@ -62,16 +62,16 @@ public class App {
 		Person p2 = (Person) em.get(Person.class, 1);
 		log.info(p2.getFirstName());
 
-//		log.info("Remove");
-//		em.delete(p2);
-//
-//		try {
-//			log.info("Find");
-//			Person p3 = (Person) em.get(Person.class, 1);
-//			log.info(p3.getFirstName());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		// log.info("Remove");
+		// em.delete(p2);
+		//
+		// try {
+		// log.info("Find");
+		// Person p3 = (Person) em.get(Person.class, 1);
+		// log.info(p3.getFirstName());
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
 
 		System.out.println();
 		em.close();
@@ -86,34 +86,46 @@ public class App {
 		System.out.println();
 		// Work with the EM
 		Person person = new Person(null, "Guilherme", "Hott", 26);
-
-		// salvar
-		log.info("Save");
-		em.persist(person);
-		log.info(person.getFirstName());
-		em.refresh(person);
-
-//		person.setFirstName("Cecilia");
-//		log.info("Update");
-//		em.persist(person);
-//
-//		log.info("Find");
-//		Person p2 = em.find(Person.class, 1);
-//		log.info(p2.getFirstName());
-
-//		log.info("Remove");
-//		em.remove(p2);
-//
 //		try {
-//			log.info("Find");
-//			Person p3 = em.find(Person.class, 1);
-//			log.info(p3.getFirstName());
+//			// salvar
+//			em.getTransaction().begin();
+//			log.info("Save");
+//			em.persist(person);
+//			em.getTransaction().commit();
+//			log.info(person.getFirstName());
 //		} catch (Exception e) {
+//			em.getTransaction().rollback();
 //			e.printStackTrace();
+//		} finally {
+//			emf.close();
 //		}
+		
+		emf = Persistence.createEntityManagerFactory("event-listener-hibernate");
+		em = emf.createEntityManager(); // Retrieve an application managed entity manager
+		try {
+			em.getTransaction().begin();
+			log.info("Find");
+			Person p2 = em.find(Person.class, 28);
+			em.getTransaction().commit();
+			log.info(p2.getFirstName());
 
-		System.out.println();
-		em.close();
-		emf.close(); // close at application end
+			em.getTransaction().begin();
+			log.info("Remove");
+			em.remove(p2);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			emf.close();
+		}
+
+		// try {
+		// log.info("Find");
+		// Person p3 = em.find(Person.class, 1);
+		// log.info(p3.getFirstName());
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
 	}
 }
